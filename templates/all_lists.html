@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+{% for list in all_lists %}
+    <li><a href="{% url 'todo:single_view' list.pk %}">{{ list.name }}</a></li>
+    <ol>
+        {% for item in list.items.all %}
+            {% if not item.finished %}
+                <li>{{ item.description }}</li>
+            {% else %}
+                <li style="text-decoration: line-through;">{{ item.description }}</li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+{% endfor %}
+</ul>
+</body>
+</html>

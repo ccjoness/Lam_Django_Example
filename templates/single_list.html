@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Single ToDo</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+<a href="{% url 'todo:home' %}">Go Back</a>
+<h1>{{ single_list.name }}</h1>
+<ol>
+    {% for item in single_list.items.all %}
+        {% if not item.finished %}
+            <li>{{ item.description }}</li>
+        {% else %}
+            <li style="text-decoration: line-through;">{{ item.description }}</li>
+        {% endif %}
+    {% endfor %}
+</ol>
+</body>
+</html>
